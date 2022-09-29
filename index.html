@@ -1,0 +1,41 @@
+Team Members:
+Nicholas Antiochos
+
+Title: FABRIK Inverse Kinematics In Procedural Animation
+
+Description:
+	In this project, I plan to implement the FABRIK inverse kinematics solver, which is an iterative solution to the inverse kinematics problem. Inverse kinematics deals with having a start point, followed by a series of segments connected by joints (possibly with constraints) ending in an effector that we want to reach a certain point (possibly with a specified rotation). An example of this would be an arm, which starts at the shoulder, then has joints connecting to the upper arm, lower arm, and finally the hand (the effector). Using the solver, we can determine the angles that each joint needs to best bring the effector to the target position within given constraints, when it is reachable. 
+	I am specifically interested in researching FABRIK as a means to procedural animation, an alternative to traditional rigged animation that consists of letting the code do most of the animating. Using FABRIK, we can set a path for a limb’s endpoint, and the code will calculate all of the necessary joint positions to animate the rest of the limb realistically along the way.
+	I will create a simple 2D implementation as a base. From there, I would like to be able to implement joint constraints for more realistic limb movement. By the end of the process, my goal is to be able to demonstrate a spider with limbs animated via FABRIK. A stretch goal of mine, If I have the time, would be to make use of FABRIK-animated limbs in additional creatures that could demonstrate different combinations of joints with different constraints. Depending on how efficient calculations end up being, it could be cool to assemble something like a centipede with a lot of limbs involved.
+
+References
+A technical explanation of FABRIK with model constraints
+http://andreasaristidou.com/publications/papers/Extending_FABRIK_with_Model_C%CE%BFnstraints.pdf 
+
+Simple explanation of FABRIK (no constraints)
+https://www.youtube.com/watch?v=li2N5U434Ck&t=357s 
+
+Implementation of Shoulder/Hinge constraints. Implementation is for a different platform, though the explanation should still be of use
+https://subscription.packtpub.com/book/programming/9781800208087/13/ch13lvl1sec09/implementing-constraints 
+
+
+Timeline:
+Week 5-6 
+Get a basic 2D demo of a FABRIK-animated limb (no constraints) in Godot
+(If necessary, create a powerpoint for the overview due end of week 6)
+Week 7-8
+Work on extending 2D model to 3D (new dimensions of rotation involved)
+Week 9-10
+Work on implementing constraints
+Capture pictures/videos for week 10 progress report
+Week 11-12
+Work on website
+Set up a spider with FABRIK-animated limbs
+Week 13-END
+Tying up loose ends
+Finishing touches to website
+Stretch goals
+
+
+Plan for dividing work:
+	I am working alone for this project
