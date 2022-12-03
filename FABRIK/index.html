@@ -13,6 +13,12 @@
 			background-color:#cfe2ff;
 		}
 	</style>
+	
+	<script type="text/javascript">
+		function loadDemo(){
+		  document.querySelector('#demo-area').innerHTML = `<iframe frameborder="0" src="https://itch.io/embed-upload/6898021?color=333333" allowfullscreen="" width="640" height="380"><a href="https://nickantiochos.itch.io/fabrik-3d-demo">Play FABRIK 3D Demo on itch.io</a></iframe>`;
+		}
+	</script>
 </head>
 
 <div class="jumbotron bg-primary text-center">
@@ -62,7 +68,9 @@
 		  </div>
 		  <div class="card-body">
 		  	<!--Embed for itch.io page with the demo-->
-<iframe frameborder="0" src="https://itch.io/embed-upload/6898021?color=333333" allowfullscreen="" width="640" height="380"><a href="https://nickantiochos.itch.io/fabrik-3d-demo">Play FABRIK 3D Demo on itch.io</a></iframe>
+			  <div id="demo-area">
+				  <button class="btn btn-primary" onclick="loadDemo()">Load Demo</button>  
+			  </div>
 		  
 			 <div class="card-text">
 				 <b>Controls:</b>
