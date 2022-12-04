@@ -123,6 +123,8 @@
 					&emsp;&emsp;return<br>
 					&emsp;turn_away_from(last joint)<br>
 					&emsp;move_joint_to(last joint)<br>
+					&emsp;if (violates_constraint(joint))<br>
+					&emsp;&emsp;constrain(joint)<br>
 					<br>
 					<br>
 					
