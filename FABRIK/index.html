@@ -87,6 +87,30 @@
 	<div class="col-sm-12">
 		<div class="card">
 		  <div class="card-header bg-primary">
+		    FABRIK Algorithm (with angular constraints)
+		  </div>
+		  <div class="card-body">
+		  	<p class="card-text">
+		  		Each iteration of Forward and Backward Reaching Inverse Kinematics (FABRIK) consists of two stages: the forward reach, and backward reach. There is no single way to implement constraints with FABRIK, but I chose to apply it to each joint after the backward reach is completed for it. For the sake of this explanation, we will refer to the joint at the base of the limb as the first joint, and the one closest to the end of the limb as the last joint. The end of the limb will have a target position that we will assume it is not already touching
+			</p>
+			<p class="card-text">
+		  		In the forward reach we iterate through each joint from last to first. The last joint (at the endpoint of the limb) turns so that its segment or bone is directed towards the target point. It is then moved so that the endpoint of the segment is touching this target. Each following joint turns so that its segment is directed towards the joint after it in the limb, and then moves until its segment’s endpoint is connected to the joint again. By the end of this stage, you should end up with the limb’s endpoint touching its target, and unless the optimal solution has been reached, the base of the limb will be disconnected.
+			</p>
+			<p class="card-text">
+		  		In the backward reach, we iterate through each joint from first to last. The base joint is moved back to the limb’s starting position. If there is a constraint designated to this joint and it is currently out of range, it will be rotated so that it is adhering as closely to its original rotation as possible at the edge of its allowed rotation. Each following joint is rotated so that its segment is directed away from the joint preceding it in the limb, and it is moved back to the endpoint of the segment before it. When each joint is moved back in place, its constraint may be applied just as the base joint’s constraint was. By the end of this stage an iteration of FABRIK has been completed and your base joint should be connected to the limb’s starting point. If the optimal solution has been reached, the limb’s endpoint should be connecting with the target. 
+			</p>
+			<p class="card-text">
+		  		If the limb’s endpoint has entered the designated region of tolerance around the target, the algorithm can be terminated here. It is important to set a maximum number of iterations, as this way the algorithm will terminate even if the optimal solution is unreachable. If the optimal solution was unreachable, I chose to reload the stored joint angles from before FABRIK was run. I also used this as a sign that the target needed to be relocated, as in the context of my use case if a creature’s leg is no longer able to comfortably connect with the ground it would take a step or at the very least readjust its footing.
+			</p>
+		  </div>
+		</div>
+	</div>
+  </div>
+
+<div class="row mb-4">
+	<div class="col-sm-12">
+		<div class="card">
+		  <div class="card-header bg-primary">
 		    Playable Demo
 		  </div>
 		  <div class="card-body">
