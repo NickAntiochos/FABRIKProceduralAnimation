@@ -95,6 +95,9 @@
 		  		In the presentation video, I go over a step-by-step example of the base algorithm (no constraints) with a visual aid
 			</p>
 		  	<p class="card-text">
+				LIMB_START = position where limb is supposed to be connected<br>
+				TARGET = where we want the limb's endpoint to be<br>
+				<br>
 		  		<em>
 					for (i = 0; i < MAX_ITERATIONS; i++)<br>
 					&emsp;forward_reach()<br>
@@ -107,22 +110,22 @@
 					function forward_reach():<br>
 					&emsp;for joint in reverse(joints)<br>
 					&emsp;if (joint == last joint)<br>
-					&emsp;&emsp;turn_towards(target)<br>
-					&emsp;&emsp;move_segment_endpoint_to(target)<br>
+					&emsp;&emsp;joint.turn_towards(TARGET)<br>
+					&emsp;&emsp;joint.move_segment_endpoint_to(TARGET)<br>
 					&emsp;&emsp;return<br>
-					&emsp;turn_towards(next joint)<br>
-					&emsp;move_segment_endpoint_to(next joint)<br>
+					&emsp;joint.turn_towards(joint.next_joint)<br>
+					&emsp;joint.move_segment_endpoint_to(joint.next_joint)<br>
 					<br>
 					<br>
 					
 					function backward_reach():<br>
 					&emsp;for joint in joints<br>
 					&emsp;if (joint == first joint)<br>
-					&emsp;&emsp;turn_away_from(limb start)<br>
-					&emsp;&emsp;move_joint_to(limb start)<br>
+					&emsp;&emsp;joint.turn_away_from(LIMB_START)<br>
+					&emsp;&emsp;joint.move_joint_to(LIMB_START)<br>
 					&emsp;&emsp;return<br>
-					&emsp;turn_away_from(last joint)<br>
-					&emsp;move_joint_to(last joint)<br>
+					&emsp;joint.turn_away_from(joint.previous_joint)<br>
+					&emsp;joint.move_joint_to(joint.previous_joint)<br>
 					&emsp;if (violates_constraint(joint))<br>
 					&emsp;&emsp;constrain(joint)<br>
 					<br>
