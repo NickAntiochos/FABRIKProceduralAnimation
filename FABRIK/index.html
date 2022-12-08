@@ -80,7 +80,7 @@
 		  		We have a set of limbs made up of segments connected by joints. Each frame rendered, every individual limb needs to position its joints realistically so that its base is still connected, and the endpoint is hitting the desired goal.
 			</p>
 			<p class="card-text">
-		  		If each limb is only made up of 2 segments with 1 joint, we essentially end up with a triangle where the 3 sides are the 2 limb segments and an imaginary line between the base of the joint and the goal. We know the length of all 3 sides, so we can apply the Law of Cosines to directly calculate the angle of the single joint. The problem is solved. However, this solution falls apart if there are multiple joints in the limb. It becomes even further complicated once we introduce constraints, after all, there are going to be certain ranges that we want our limbs to remain within.
+		  		If each limb is only made up of 2 segments with 1 joint, we essentially end up with a triangle where the 3 sides are the 2 limb segments and an imaginary line between the base of the joint and the goal. We know the length of all 3 sides, so we can apply the Law of Cosines to directly calculate the angle of the single joint. The problem is solved. However, this solution falls apart if there are multiple joints in the limb. It becomes even further complicated once we introduce constraints, after all, certain joints are expected to be limited to a specific range of motion.
 			</p>
 		  </div>
 		</div>
