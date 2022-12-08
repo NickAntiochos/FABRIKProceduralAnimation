@@ -115,35 +115,35 @@
 				TARGET = where we want the limb's endpoint to be<br>
 				<br>
 		  		<em>
-					for (i = 0; i < MAX_ITERATIONS; i++)<br>
-					&emsp;forward_reach()<br>
-					&emsp;backward_reach()<br>
-					&emsp;if (endpoint within target area)<br>
-					&emsp;&emsp;break<br>
+					for (i = 0; i < MAX_ITERATIONS; i++):<br>
+					&emsp;forward_reach();<br>
+					&emsp;backward_reach();<br>
+					&emsp;if (endpoint within target area):<br>
+					&emsp;&emsp;break;<br>
 					<br>
 					<br>
 					
 					function forward_reach():<br>
-					&emsp;for joint in reverse(joints)<br>
-					&emsp;if (joint == last joint)<br>
-					&emsp;&emsp;joint.turn_towards(TARGET)<br>
-					&emsp;&emsp;joint.move_segment_endpoint_to(TARGET)<br>
-					&emsp;&emsp;return<br>
-					&emsp;joint.turn_towards(joint.next_joint)<br>
-					&emsp;joint.move_segment_endpoint_to(joint.next_joint)<br>
+					&emsp;for joint in reverse(joints):<br>
+					&emsp;if (joint == last joint):<br>
+					&emsp;&emsp;joint.turn_towards(TARGET);<br>
+					&emsp;&emsp;joint.move_segment_endpoint_to(TARGET);<br>
+					&emsp;&emsp;return;<br>
+					&emsp;joint.turn_towards(joint.next_joint);<br>
+					&emsp;joint.move_segment_endpoint_to(joint.next_joint);<br>
 					<br>
 					<br>
 					
 					function backward_reach():<br>
-					&emsp;for joint in joints<br>
-					&emsp;if (joint == first joint)<br>
-					&emsp;&emsp;joint.turn_away_from(LIMB_START)<br>
-					&emsp;&emsp;joint.move_joint_to(LIMB_START)<br>
-					&emsp;&emsp;return<br>
-					&emsp;joint.turn_away_from(joint.previous_joint)<br>
-					&emsp;joint.move_joint_to(joint.previous_joint)<br>
-					&emsp;if (violates_constraint(joint))<br>
-					&emsp;&emsp;constrain(joint)<br>
+					&emsp;for joint in joints:<br>
+					&emsp;if (joint == first joint):<br>
+					&emsp;&emsp;joint.turn_away_from(LIMB_START);<br>
+					&emsp;&emsp;joint.move_joint_to(LIMB_START);<br>
+					&emsp;&emsp;return;<br>
+					&emsp;joint.turn_away_from(joint.previous_joint);<br>
+					&emsp;joint.move_joint_to(joint.previous_joint);<br>
+					&emsp;if (violates_constraint(joint)):<br>
+					&emsp;&emsp;constrain(joint);<br>
 					<br>
 					<br>
 					
