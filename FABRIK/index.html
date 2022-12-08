@@ -92,9 +92,15 @@
 		  <div class="card-body">
 			<img src="limb_diagram.png"><img src="joint_segment_breakdown.png">
 			<p class="card-text">
-		  		In the presentation video, I go over a step-by-step example of the base algorithm (no constraints) with a visual aid
+				Forward and Backward Reaching Inverse Kinematics (FABRIK) solves the inverse kinematics problem iteratively. Each iteration consists of 2 stages in the following order: a forward reach, and a backward reach. A good way to visualize what FABRIK is doing is to picture the entire limb as a chain where each link is a segment of the limb. Then, imagine the forward reach is tugging the end of the chain to the goal and the backward reach is tugging the start of the chain back to the limb's start position. 
+				The "tug" happens segment by segment, causing the joint being looked at to temporarily detach from the segment that will be visited next iteration. One-by-one, each piece of the limb is rotated about its joint such that the connection point to the rest of the limb (the end of the segment in the forward reach, and the start of the segment, where the joint is, in the backward reach) is facing the place where it docks in the rest of the segment. Then, the segment is moved to reconnect to the rest of the limb, opening another gap in the limb behind it that is about to be closed by the next iteration of this inner loop. 
+				There are a variety of ways to implement constraints, but the method I chose was to constrain each joint individually at the end of the step where it is visited in the backward reach. Shoulder joints are constrained by preserving the direction of rotation but capping the magnitude of rotation at the maximum allowed as set for that joint. Knee joints are treated the same way but projected onto their plane of rotation first.
+				This process continues until either the goal is reached within the desired margin of error at the end of the backward reach, or the maximum number of iterations has been hit. Typical reasons for a limb to not be able to reach its goal are the distance from the limb to the goal being greater than the sum of the length of its segments, or the goal being out of reach due to constraints. There are situations in this implementation where the goal should be reachable, but strict constraints can still prevent it from being reached, which is discussed further under limitations.<br><br>
+
+				In the presentation video, I go over a step-by-step example of the base algorithm (no constraints) with a visual aid
 			</p>
 		  	<p class="card-text">
+				<h2>Pseudocode:</h2><br>
 				LIMB_START = position where limb is supposed to be connected<br>
 				TARGET = where we want the limb's endpoint to be<br>
 				<br>
@@ -133,6 +139,35 @@
 					
 				</em>
 			</p>
+		  </div>
+		</div>
+	</div>
+  </div>
+
+<div class="row mb-4">
+	<div class="col-sm-12">
+		<div class="card">
+		  <div class="card-header bg-primary">
+		    Limitations
+		  </div>
+		  <div class="card-body">
+			  <ol>
+				<li>
+					<h2>Control over joints lacking</h2>
+					<p>
+						Some of the control over constraints that would be necessary to create systems more akin to real creatures is missing. One example of this would be an offset for the allowed range of motion of a joint. Currently, a knee set up with this system would be able to bend equal amounts in either direction if a maximum angle of rotation was set. A large portion of the problem here has to do with my inexperience working with 3D rotations via quaternions, which are a lot more complicated and harder to visualize than 2D angles and rotation.
+					</p>
+				</li>
+				<li>
+					<h2>Implementation Failing To Reach Goals Under Strict Constraints</h2>
+					<p>
+						If strict constraints are added towards the end of a limb, like a knee joint constraint, there are times where a target position that should be reachable is not met. Increasing iterations does not help, as the algorithm reaches a deadlocked state. In research, I found some suggestions that involved reworking pretty much the whole system, and by this point I was low on time and the rework would have a mere chance at making an improvement. I was happy with the way the spider turned out without such strict constraints, so I decided to save the time for the website, final video, and a better website.
+					</p>
+				</li>
+			  </ol>
+		  
+			 
+		
 		  </div>
 		</div>
 	</div>
